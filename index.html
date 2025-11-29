@@ -9,148 +9,123 @@
 
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loadingScreen">
-    <div class="loader"></div>
-    <p>Loading your content...</p>
-  </div>
+<!-- LOADING OVERLAY -->
+<div id="loadingScreen">
+  <div class="loader"></div>
+  <p>Loading your content...</p>
+</div>
 
-  <div class="container">
-    <h1 class="title">Exclusive Content</h1>
+<!-- MAIN CONTENT -->
+<div class="container">
+  <h1 class="title">Exclusive Image Access</h1>
 
-    <!-- IMAGE PREVIEWS -->
-    <!-- Image 1 -->
+  <div class="preview-grid">
+    <!-- Each image with its price and buy button -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/svYZdvjC/20251129-145329.jpg" alt="Image1" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.50</p>
-      <button onclick="openPayment('2.50', 'https://i.ibb.co/svYZdvjC/20251129-145329.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/svYZdvjC/20251129-145329.jpg" class="blurred" alt="Image 1" />
+      <p class="price-tag">$2.50</p>
+      <button onclick="openPayment(2.50,'https://i.ibb.co/svYZdvjC/20251129-145329.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 2 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg" alt="Image2" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $3.00</p>
-      <button onclick="openPayment('3.00', 'https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg" class="blurred" alt="Image 2" />
+      <p class="price-tag">$3.00</p>
+      <button onclick="openPayment(3.00,'https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 3 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg" alt="Image3" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.75</p>
-      <button onclick="openPayment('2.75', 'https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg" class="blurred" alt="Image 3" />
+      <p class="price-tag">$2.00</p>
+      <button onclick="openPayment(2.00,'https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 4 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/JWJxTp7y/20251129-145227.jpg" alt="Image4" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $3.20</p>
-      <button onclick="openPayment('3.20', 'https://i.ibb.co/JWJxTp7y/20251129-145227.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/JWJxTp7y/20251129-145227.jpg" class="blurred" alt="Image 4" />
+      <p class="price-tag">$2.50</p>
+      <button onclick="openPayment(2.50,'https://i.ibb.co/JWJxTp7y/20251129-145227.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 5 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/G3GHgypc/20251129-145234.jpg" alt="Image5" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.90</p>
-      <button onclick="openPayment('2.90', 'https://i.ibb.co/G3GHgypc/20251129-145234.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/G3GHgypc/20251129-145234.jpg" class="blurred" alt="Image 5" />
+      <p class="price-tag">$3.50</p>
+      <button onclick="openPayment(3.50,'https://i.ibb.co/G3GHgypc/20251129-145234.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 6 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/G33pCqcQ/20251129-145108.jpg" alt="Image6" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.50</p>
-      <button onclick="openPayment('2.50', 'https://i.ibb.co/G33pCqcQ/20251129-145108.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/G33pCqcQ/20251129-145108.jpg" class="blurred" alt="Image 6" />
+      <p class="price-tag">$2.00</p>
+      <button onclick="openPayment(2.00,'https://i.ibb.co/G33pCqcQ/20251129-145108.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 7 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/yct6MV5C/20251129-145149.jpg" alt="Image7" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $3.50</p>
-      <button onclick="openPayment('3.50', 'https://i.ibb.co/yct6MV5C/20251129-145149.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/yct6MV5C/20251129-145149.jpg" class="blurred" alt="Image 7" />
+      <p class="price-tag">$2.50</p>
+      <button onclick="openPayment(2.50,'https://i.ibb.co/yct6MV5C/20251129-145149.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 8 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/0R9HT4cy/20251129-145039.jpg" alt="Image8" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $3.00</p>
-      <button onclick="openPayment('3.00', 'https://i.ibb.co/0R9HT4cy/20251129-145039.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/0R9HT4cy/20251129-145039.jpg" class="blurred" alt="Image 8" />
+      <p class="price-tag">$3.00</p>
+      <button onclick="openPayment(3.00,'https://i.ibb.co/0R9HT4cy/20251129-145039.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 9 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/MyR8TNTt/20251129-145049.jpg" alt="Image9" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.80</p>
-      <button onclick="openPayment('2.80', 'https://i.ibb.co/MyR8TNTt/20251129-145049.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/MyR8TNTt/20251129-145049.jpg" class="blurred" alt="Image 9" />
+      <p class="price-tag">$2.50</p>
+      <button onclick="openPayment(2.50,'https://i.ibb.co/MyR8TNTt/20251129-145049.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 10 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/fYNLzc8D/20251129-145027.jpg" alt="Image10" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $3.10</p>
-      <button onclick="openPayment('3.10', 'https://i.ibb.co/fYNLzc8D/20251129-145027.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/fYNLzc8D/20251129-145027.jpg" class="blurred" alt="Image 10" />
+      <p class="price-tag">$2.00</p>
+      <button onclick="openPayment(2.00,'https://i.ibb.co/fYNLzc8D/20251129-145027.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 11 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg" alt="Image11" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.60</p>
-      <button onclick="openPayment('2.60', 'https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg" class="blurred" alt="Image 11" />
+      <p class="price-tag">$3.00</p>
+      <button onclick="openPayment(3.00,'https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 12 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/pBPcvQpB/20251129-144820.jpg" alt="Image12" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.95</p>
-      <button onclick="openPayment('2.95', 'https://i.ibb.co/pBPcvQpB/20251129-144820.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/pBPcvQpB/20251129-144820.jpg" class="blurred" alt="Image 12" />
+      <p class="price-tag">$2.50</p>
+      <button onclick="openPayment(2.50,'https://i.ibb.co/pBPcvQpB/20251129-144820.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 13 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg" alt="Image13" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $3.25</p>
-      <button onclick="openPayment('3.25', 'https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg" class="blurred" alt="Image 13" />
+      <p class="price-tag">$2.50</p>
+      <button onclick="openPayment(2.50,'https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
-    <!-- Image 14 -->
     <div class="preview-box">
-      <img src="https://i.ibb.co/9C6Z59F/20251129-144817.jpg" alt="Image14" />
-      <div class="partial-blur"></div>
-      <p class="locked-text">Price: $2.70</p>
-      <button onclick="openPayment('2.70', 'https://i.ibb.co/9C6Z59F/20251129-144817.jpg')" class="buy-btn">Buy Now</button>
+      <img src="https://i.ibb.co/9C6Z59F/20251129-144817.jpg" class="blurred" alt="Image 14" />
+      <p class="price-tag">$3.50</p>
+      <button onclick="openPayment(3.50,'https://i.ibb.co/9C6Z59F/20251129-144817.jpg')" class="buy-btn">Buy Now</button>
     </div>
 
   </div>
+</div>
 
-  <!-- PAYMENT MODAL -->
-  <div id="paymentModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closePayment()">&times;</span>
-      <h2>Complete Payment</h2>
-      <p id="paymentPrice">Send amount using the QR code below:</p>
-      <canvas id="qrCanvas"></canvas>
-      <p id="selectedWallet" class="wallet-address"></p>
-      <button onclick="copyWallet()">Copy Wallet</button>
-      <input id="emailInput" type="email" placeholder="Enter your email" />
-      <p>Attach your payment proof here (optional)</p>
-      <input type="file" id="paymentProof" />
-      <button onclick="confirmPayment()" class="confirm-btn">I Have Paid</button>
-    </div>
+<!-- PAYMENT POPUP -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePayment()">&times;</span>
+    <h2>Complete Payment</h2>
+    <p id="paymentPrice">Send $X using the QR code below:</p>
+    <canvas id="qrCanvas"></canvas>
+    <p class="wallet-address" id="selectedWallet"></p>
+    <button onclick="copyWallet()">Copy Wallet Address</button>
+    <input id="emailInput" type="email" placeholder="Enter your email" />
+    <input id="paymentProof" type="file" accept="image/*" />
+    <button onclick="confirmPayment()" class="confirm-btn">I Have Paid</button>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
