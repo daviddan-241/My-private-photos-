@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Download — My Private</title>
   <style>
     body {
       background: #0d0d0d;
       color: white;
-      font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 50px;
+      font-family: Arial, sans-serif;
+      margin-top: 70px;
     }
-    a {
+    .download-box {
+      background: #1a1a1a;
       display: inline-block;
-      margin: 15px 0;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    a.download-btn {
+      display: inline-block;
       background: #0066ff;
       padding: 12px 25px;
       color: white;
-      border-radius: 10px;
+      border-radius: 12px;
       text-decoration: none;
       font-size: 16px;
     }
-    a:hover {
+    a.download-btn:hover {
       background: #0053cc;
     }
-    h1 { margin-bottom: 10px; }
-    p { opacity: 0.8; }
   </style>
 </head>
 <body>
 
 <h1>Your Purchase is Ready</h1>
-<p>Click below to download your exclusive content:</p>
 
-<!-- Replace the href with the actual image URL sent to email -->
-<a id="downloadLink" href="" download>Download Now</a>
+<div class="download-box">
+  <!-- Replace "image.jpg" with the URL sent in email link -->
+  <img id="purchasedImage" src="" alt="Your Purchased Content" />
+  <br />
+  <a id="downloadLink" href="" download class="download-btn">Download Image</a>
+</div>
 
 <script>
-  // Get URL params to identify which image
+  // Grab the image URL from query string ?img=<imageURL>
   const urlParams = new URLSearchParams(window.location.search);
-  const imgUrl = urlParams.get('img');
+  const imgURL = urlParams.get('img');
 
-  const downloadLink = document.getElementById('downloadLink');
-
-  if(imgUrl) {
-    downloadLink.href = imgUrl;
+  if(imgURL) {
+    document.getElementById('purchasedImage').src = imgURL;
+    document.getElementById('downloadLink').href = imgURL;
   } else {
-    downloadLink.textContent = "Invalid or expired link";
-    downloadLink.style.pointerEvents = "none";
-    downloadLink.style.opacity = "0.5";
+    document.body.innerHTML = "<h2>No image found. Please check your email for the correct link.</h2>";
   }
 </script>
 
