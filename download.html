@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Your Purchase</title>
+  <style>
+    body {
+      background:#0d0d0d;
+      color:white;
+      font-family:Arial;
+      text-align:center;
+      margin-top:70px;
+    }
+    a.download-btn {
+      background:#0066ff;
+      padding:12px 20px;
+      color:white;
+      border-radius:10px;
+      text-decoration:none;
+      font-size:16px;
+    }
+    a.download-btn:hover {
+      background:#0053cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Purchase Is Ready!</h1>
+  <p>Click below to download:</p>
+  <a id="downloadLink" class="download-btn" href="#" download>Download Now</a>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const file = urlParams.get('file') || "https://i.ibb.co/svYZdvjC/20251129-145329.jpg";
+    document.getElementById("downloadLink").href = file;
+  </script>
+</body>
+</html>
