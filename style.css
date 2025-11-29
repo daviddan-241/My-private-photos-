@@ -1,54 +1,20 @@
-// INITIALIZE EMAILJS
-emailjs.init("n84eVGeczJMPu9O6U");
+body { margin:0; font-family:Arial,sans-serif; background:#0d0d0d; color:white; text-align:center; }
+.container { margin-top:60px; }
+.gallery { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; }
+.preview-box { background:#1a1a1a; padding:15px; border-radius:15px; width:220px; position:relative; }
+.blurred { width:100%; filter: blur(6px) brightness(80%); border-radius:10px; }
+.locked-text { position:absolute; top:10px; left:10px; font-weight:bold; background:rgba(0,0,0,0.6); padding:5px 10px; border-radius:5px; }
+.buy-btn { margin-top:10px; background:#0066ff; color:white; padding:10px 20px; border:none; border-radius:10px; cursor:pointer; width:100%; font-size:14px; }
+.buy-btn:hover { background:#0053cc; }
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); }
+.modal-content { background:#1a1a1a; width:90%; margin:80px auto; padding:20px; border-radius:15px; color:white; text-align:center; }
+.close { float:right; font-size:26px; cursor:pointer; }
+.qr-img { width:220px; margin:10px 0; }
+.wallet-address { font-size:14px; opacity:0.8; margin-bottom:10px; }
+.confirm-btn { margin-top:10px; background:#00cc66; color:white; padding:10px 20px; border:none; border-radius:10px; cursor:pointer; width:100%; }
+.confirm-btn:hover { background:#00aa55; }
 
-// Hide loading screen after 2s
-setTimeout(() => document.getElementById("loadingScreen").style.display = "none", 2000);
-
-// DYNAMIC GALLERY
-const galleryContainer = document.querySelector(".gallery");
-const savedGallery = JSON.parse(localStorage.getItem("gallery") || "[]");
-
-savedGallery.forEach((item, index) => {
-  const box = document.createElement("div");
-  box.classList.add("preview-box");
-  box.innerHTML = `
-    <img src="${item.src}" class="blurred" alt="Image ${index+1}">
-    <p class="locked-text">$${item.price.toFixed(2)}</p>
-    <button onclick="openPayment('${item.src}', ${item.price})" class="buy-btn">Buy Now</button>
-  `;
-  galleryContainer.appendChild(box);
-});
-
-// OPEN PAYMENT POPUP
-function openPayment(imgSrc, price) {
-  localStorage.setItem("currentItem", JSON.stringify({ imgSrc, price }));
-  document.getElementById("paymentModal").style.display = "block";
-}
-
-// CLOSE PAYMENT POPUP
-function closePayment() {
-  document.getElementById("paymentModal").style.display = "none";
-}
-
-// CONFIRM PAYMENT
-function confirmPayment() {
-  const email = document.getElementById("emailInput").value;
-  const proofFile = document.getElementById("paymentProof").files[0];
-
-  if(!email.trim()) { alert("Enter your email to receive the download link."); return; }
-  if(!proofFile) { alert("Upload payment proof image."); return; }
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    const currentItem = JSON.parse(localStorage.getItem("currentItem"));
-    emailjs.send("service_62yc0zi", "template_ugv2uq9", {
-      user_email: email,
-      item_price: currentItem.price,
-      download_link: currentItem.imgSrc,
-      proof_file: reader.result
-    })
-    .then(() => { alert("Payment confirmed! Download link sent to your email."); closePayment(); })
-    .catch(err => { alert("Error sending email. Check console."); console.log(err); });
-  };
-  reader.readAsDataURL(proofFile);
-}
+/* Loading animation */
+#loadingScreen { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+.loader { border:5px solid #333; border-top:5px solid #00ccff; border-radius:50%; width:55px; height:55px; animation:spin 1.2s linear infinite; }
+@keyframes spin { 100% { transform:rotate(360deg); } }
