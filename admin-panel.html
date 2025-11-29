@@ -1,48 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel — My Private</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Private — Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="admin-panel">
-    <h1>Welcome, Admin</h1>
-    <p>Upload new images, manage prices, view payment confirmations</p>
-    
-    <input type="file" id="uploadImage" multiple>
-    <input type="number" id="priceInput" placeholder="Set Price ($)">
-    <button onclick="uploadImages()">Upload</button>
-    
-    <div id="uploadedList"></div>
+  <div class="container">
+    <h1>Admin Panel</h1>
+    <input type="file" id="imageUpload" accept="image/*" multiple>
+    <input type="number" id="priceInput" placeholder="Price for selected image" step="0.01">
+    <button onclick="addImages()">Add Images</button>
+    <button onclick="logout()">Logout</button>
+
+    <div id="previewContainer"></div>
   </div>
 
-  <script>
-    function uploadImages() {
-      const files = document.getElementById('uploadImage').files;
-      const price = document.getElementById('priceInput').value;
-      if(files.length === 0 || price === "") {
-        alert("Select files and enter price!");
-        return;
-      }
+<script>
+if(localStorage.getItem("isAdmin") !== "true") {
+  alert("Unauthorized! Redirecting to login...");
+  window.location.href = "admin.html";
+}
 
-      const uploadedList = document.getElementById('uploadedList');
-      for(let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          img.style.width = "150px";
-          img.style.margin = "5px";
-          uploadedList.appendChild(img);
-        }
-        reader.readAsDataURL(file);
-      }
+function addImages() {
+  const files = document.getElementById("imageUpload").files;
+  const price = parseFloat(document.getElementById("priceInput").value);
+  if(!files.length || isNaN(price)) { alert("Select images and enter price!"); return; }
 
-      alert("Images uploaded for preview. Buyers will see them after you update the gallery!");
-    }
-  </script>
+  const gallery = JSON.parse(localStorage.getItem("gallery") || "[]");
+
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      gallery.push({ src: reader.result, price: price });
+      localStorage.setItem("gallery", JSON.stringify(gallery));
+      showGallery();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function showGallery() {
+  const container = document.getElementById("previewContainer");
+  const gallery = JSON.parse(localStorage.getItem("gallery") || "[]");
+  container.innerHTML = "";
+  gallery.forEach((img, idx) => {
+    container.innerHTML += `
+      <div class="preview-box">
+        <img src="${img.src}" style="width:150px;">
+        <p>$${img.price}</p>
+      </div>
+    `;
+  });
+}
+
+function logout() {
+  localStorage.removeItem("isAdmin");
+  window.location.href = "admin.html";
+}
+
+showGallery();
+</script>
 </body>
 </html>
