@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exclusive Content Gallery</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exclusive Content Gallery</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loadingScreen">
-    <div class="loader"></div>
-    <p>Loading your content...</p>
-  </div>
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">
+  <div class="loader"></div>
+  <p>Loading your content...</p>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <h1 class="title">Exclusive Content</h1>
-    <div id="gallery" class="gallery"></div>
-  </div>
+<!-- MAIN CONTAINER -->
+<div class="container">
+  <h1 class="title">Exclusive Content</h1>
+  <div id="gallery" class="gallery"></div>
+</div>
 
-  <!-- PAYMENT MODAL -->
-  <div id="paymentModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closePayment()">&times;</span>
-      <h2>Complete Payment</h2>
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePayment()">&times;</span>
+    <h2>Complete Payment</h2>
 
-      <div id="selectedPreview" class="selected-preview"></div>
+    <div id="selectedPreview" class="selected-preview"></div>
 
-      <p>Select your crypto wallet:</p>
-      <div class="wallet-list">
-        <button class="wallet-btn" onclick="showQR('Bitcoin','bc1qdrw4yztttnnd35h33kmkw4tmhex9vkd83r8jg3')">Bitcoin</button>
-        <button class="wallet-btn" onclick="showQR('Ethereum','0xff14ff21cecbfc487a0a7695ee16fe1ebf425bde')">Ethereum</button>
-        <button class="wallet-btn" onclick="showQR('Solana','4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy')">Solana</button>
-        <button class="wallet-btn" onclick="showQR('Other','D5qxyiLWwa7ZKRQYTLdLPJJmG1nMpCEGty')">Other</button>
-      </div>
-
-      <div class="qr-container">
-        <img id="qrImage" class="qr-img" alt="QR Code" onclick="copyWallet()" title="Click to copy wallet"/>
-        <p id="selectedWallet" class="wallet-address" onclick="copyWallet()" title="Click to copy wallet"></p>
-      </div>
-
-      <input id="emailInput" type="email" placeholder="Enter your email" />
-      <button class="confirm-btn" onclick="confirmPayment()">I Have Paid</button>
+    <p>Select wallet:</p>
+    <div class="wallet-list">
+      <button class="wallet-btn" onclick="showQR('Bitcoin','bc1qdrw4yztttnnd35h33kmkw4tmhex9vkd83r8jg3')">Bitcoin</button>
+      <button class="wallet-btn" onclick="showQR('Ethereum','0xff14ff21cecbfc487a0a7695ee16fe1ebf425bde')">Ethereum</button>
+      <button class="wallet-btn" onclick="showQR('Solana','4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy')">Solana</button>
+      <button class="wallet-btn" onclick="showQR('Other','D5qxyiLWwa7ZKRQYTLdLPJJmG1nMpCEGty')">Other</button>
     </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="script.js"></script>
+    <div class="qr-container">
+      <img id="qrImage" class="qr-img" alt="QR Code" onclick="copyWallet()" title="Click to copy wallet"/>
+      <p id="selectedWallet" class="wallet-address" onclick="copyWallet()" title="Click to copy wallet"></p>
+    </div>
+
+    <input id="emailInput" type="email" placeholder="Enter your email" />
+    <input id="proofInput" type="file" accept="image/*" />
+    <button class="confirm-btn" onclick="confirmPayment()">I Have Paid</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
