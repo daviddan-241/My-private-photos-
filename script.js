@@ -1,93 +1,104 @@
 emailjs.init("n84eVGeczJMPu9O6U");
 
+const images = [
+  "https://i.ibb.co/JFsZcTrn/20251129-145311.jpg",
+  "https://i.ibb.co/hFhX90m2/20251129-145329.jpg",
+  "https://i.ibb.co/S700GtyH/20251129-145227.jpg",
+  "https://i.ibb.co/FkQ3GBZc/20251129-145234.jpg",
+  "https://i.ibb.co/C3c9JpVP/20251129-145108.jpg",
+  "https://i.ibb.co/Mkf83bPF/20251129-145149.jpg",
+  "https://i.ibb.co/PvCZ5pHm/20251129-145039.jpg",
+  "https://i.ibb.co/TMMCbYTr/20251129-145049.jpg",
+  "https://i.ibb.co/F4RKyPLQ/20251129-145027.jpg",
+  "https://i.ibb.co/xKjJpyQg/20251129-145030.jpg",
+  "https://i.ibb.co/sv50yGfb/20251129-144820.jpg",
+  "https://i.ibb.co/PGYHsHQ1/20251129-144911.jpg",
+  "https://i.ibb.co/qFMXTTPB/20251129-144817.jpg"
+];
+
+let selectedImages = [];
+
+// LOADING SCREEN
 setTimeout(() => {
   document.getElementById("loadingScreen").style.display = "none";
 }, 2000);
 
-const products = [
-  { url: "https://i.ibb.co/JFsZcTrn/20251129-145311.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/hFhX90m2/20251129-145329.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/S700GtyH/20251129-145227.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/FkQ3GBZc/20251129-145234.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/C3c9JpVP/20251129-145108.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/Mkf83bPF/20251129-145149.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/PvCZ5pHm/20251129-145039.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/TMMCbYTr/20251129-145049.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/F4RKyPLQ/20251129-145027.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/xKjJpyQg/20251129-145030.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/sv50yGfb/20251129-144820.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/PGYHsHQ1/20251129-144911.jpg", price: 2.50 },
-  { url: "https://i.ibb.co/qFMXTTPB/20251129-144817.jpg", price: 2.50 }
-];
-
-let selectedProducts = [];
+// GENERATE GALLERY
 const gallery = document.getElementById("gallery");
-const selectedPreview = document.getElementById("selectedPreview");
-
-// Populate gallery
-products.forEach((product,index) => {
-  const card = document.createElement("div");
-  card.className = "preview-box";
-  card.innerHTML = `
-    <img src="${product.url}" alt="Preview" />
-    <div class="partial-blur"></div>
-    <p class="locked-text">Locked — $${product.price}</p>
-    <button class="buy-btn" onclick="toggleSelection(${index})">Select / Deselect</button>
-  `;
-  gallery.appendChild(card);
+images.forEach(src=>{
+  const box = document.createElement("div");
+  box.className = "preview-box";
+  box.innerHTML = `<img src="${src}" /><div class="partial-blur"></div>`;
+  box.onclick = ()=>{
+    if(!selectedImages.includes(src)) selectedImages.push(src);
+    document.getElementById("cartTotal").innerText = (selectedImages.length * 2.5).toFixed(2);
+  };
+  gallery.appendChild(box);
 });
 
-function toggleSelection(index) {
-  const i = selectedProducts.indexOf(index);
-  if(i>-1) selectedProducts.splice(i,1);
-  else selectedProducts.push(index);
-  updateCartTotal();
-}
-
-function updateCartTotal() {
-  const total = selectedProducts.reduce((sum, idx) => sum + products[idx].price, 0);
-  document.getElementById("cartTotal").innerText = total.toFixed(2);
-  updateSelectedPreview();
-}
-
-function updateSelectedPreview() {
-  selectedPreview.innerHTML = "";
-  selectedProducts.forEach(idx => {
+// MODAL FUNCTIONS
+function openPayment(){
+  const preview = document.getElementById("selectedPreview");
+  preview.innerHTML = "";
+  selectedImages.forEach(src=>{
     const img = document.createElement("img");
-    img.src = products[idx].url;
-    selectedPreview.appendChild(img);
+    img.src = src;
+    preview.appendChild(img);
+  });
+  document.getElementById("paymentModal").style.display = "block";
+}
+
+function closePayment(){
+  document.getElementById("paymentModal").style.display = "none";
+}
+
+// SHOW QR + WALLET
+function showQR(type, wallet){
+  document.getElementById("selectedWallet").innerText = wallet;
+  const qr = new QRious({
+    element: document.getElementById('qrImage'),
+    value: wallet,
+    size: 220
   });
 }
 
-function openPayment() {
-  if(selectedProducts.length===0){ alert("Select at least one image."); return; }
-  document.getElementById("paymentModal").style.display="block";
-}
-
-function closePayment() { document.getElementById("paymentModal").style.display="none"; }
-
-function showQR(type,address){
-  document.getElementById("selectedWallet").innerText = `${type}: ${address}`;
-  new QRious({element: document.getElementById('qrImage'), value: address, size:220});
-}
-
-function confirmPayment() {
-  const email = document.getElementById("emailInput").value;
+// COPY WALLET
+function copyWallet(){
   const wallet = document.getElementById("selectedWallet").innerText;
+  if(wallet){
+    navigator.clipboard.writeText(wallet)
+      .then(()=>{ alert("Wallet address copied!"); })
+      .catch(err=>{ console.log(err); });
+  }
+}
 
-  if(!wallet){ alert("Select a wallet."); return; }
-  if(!email){ alert("Enter your email."); return; }
+// EMAILJS + AUTO DOWNLOAD
+function confirmPayment(){
+  const email = document.getElementById("emailInput").value;
+  if(!email.trim()){ alert("Enter your email"); return; }
 
-  const links = selectedProducts.map(idx=>products[idx].url).join('\n');
-
-  emailjs.send("service_mod4e09","template_r2cb89v",{
+  emailjs.send("service_mod4e09", "template_r2cb89v", {
     user_email: email,
-    download_link: links,
-    wallet_used: wallet
+    download_link: selectedImages.join(", ")
   }).then(()=>{
-    alert("Payment confirmed! Check your email for download links.");
+    alert("Payment confirmed! Your downloads will start now.");
     closePayment();
-    selectedProducts=[];
-    updateCartTotal();
-  }).catch(err=>{ alert("Error sending email."); console.log(err); });
+
+    // Download images automatically
+    selectedImages.forEach(src=>{
+      const link = document.createElement('a');
+      link.href = src;
+      link.download = src.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    // Clear cart
+    selectedImages = [];
+    document.getElementById("cartTotal").innerText = 0;
+  }).catch(err=>{
+    console.log(err);
+    alert("Error sending email");
+  });
 }
