@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Download — My Private</title>
-  <style>
-    body {
-      background: #0d0d0d;
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 70px;
-    }
-    .download-box {
-      background: #1a1a1a;
-      display: inline-block;
-      padding: 20px;
-      border-radius: 15px;
-    }
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-    a.download-btn {
-      display: inline-block;
-      background: #0066ff;
-      padding: 12px 25px;
-      color: white;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    a.download-btn:hover {
-      background: #0053cc;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Download Your Content</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>Your Purchase is Ready</h1>
+<div class="container">
+  <h1 class="title">Download Your Content</h1>
+  <p>Please enter your email used for payment to access your download:</p>
 
-<div class="download-box">
-  <!-- Replace "image.jpg" with the URL sent in email link -->
-  <img id="purchasedImage" src="" alt="Your Purchased Content" />
-  <br />
-  <a id="downloadLink" href="" download class="download-btn">Download Image</a>
+  <input type="email" id="downloadEmail" placeholder="Enter your email" />
+  <button onclick="verifyDownload()">Get Downloads</button>
+
+  <div id="downloads" style="margin-top:20px;"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // Grab the image URL from query string ?img=<imageURL>
-  const urlParams = new URLSearchParams(window.location.search);
-  const imgURL = urlParams.get('img');
+emailjs.init("n84eVGeczJMPu9O6U");
 
-  if(imgURL) {
-    document.getElementById('purchasedImage').src = imgURL;
-    document.getElementById('downloadLink').href = imgURL;
-  } else {
-    document.body.innerHTML = "<h2>No image found. Please check your email for the correct link.</h2>";
+// Dummy list of purchased content for demonstration
+const purchasedContent = [
+  {email:"buyer@example.com", items:[{name:"Content 1", url:"https://i.ibb.co/svYZdvjC/20251129-145329.jpg"},
+                                     {name:"Content 2", url:"https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg"}]},
+  // Add more entries as buyers purchase
+];
+
+function verifyDownload() {
+  const email = document.getElementById("downloadEmail").value.trim();
+  if(email === "") { alert("Enter your email."); return; }
+
+  const userData = purchasedContent.find(p => p.email.toLowerCase() === email.toLowerCase());
+  const downloadsDiv = document.getElementById("downloads");
+  downloadsDiv.innerHTML = "";
+
+  if(!userData) {
+    downloadsDiv.innerHTML = "<p style='color:red;'>No purchases found for this email.</p>";
+    return;
   }
+
+  userData.items.forEach(item => {
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.innerText = `Download ${item.name}`;
+    link.target = "_blank";
+    link.style.display = "block";
+    link.style.margin = "10px 0";
+    link.style.color = "#00ccff";
+    downloadsDiv.appendChild(link);
+  });
+}
 </script>
 
 </body>
