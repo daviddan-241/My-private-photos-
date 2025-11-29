@@ -1,4 +1,3 @@
-/* GENERAL STYLES */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -17,7 +16,6 @@ body {
   margin-bottom: 25px;
 }
 
-/* GALLERY */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -32,6 +30,7 @@ body {
   overflow: hidden;
   background: #1a1a1a;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .preview-box:hover {
@@ -43,7 +42,6 @@ body {
   display: block;
 }
 
-/* Partial blur overlay with focus reveal */
 .partial-blur {
   position: absolute;
   top: 0; left: 0;
@@ -73,7 +71,6 @@ body {
   font-size: 14px;
 }
 
-/* BUTTONS */
 .buy-btn,
 .cart-btn,
 .wallet-btn,
@@ -118,7 +115,6 @@ body {
   background: #00aa55;
 }
 
-/* PAYMENT MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -165,7 +161,6 @@ body {
   cursor: pointer;
 }
 
-/* SELECTED IMAGE THUMBNAILS IN MODAL */
 .selected-preview {
   display: flex;
   flex-wrap: wrap;
@@ -182,7 +177,6 @@ body {
   border: 1px solid #555;
 }
 
-/* LOADING SCREEN */
 #loadingScreen {
   position: fixed;
   top: 0; left: 0;
@@ -209,7 +203,6 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
   .preview-box { width: 90%; }
   .selected-preview img { width: 50px; height: 50px; }
