@@ -6,95 +6,71 @@ body {
   text-align: center;
 }
 
-/* Container and title */
+/* Container */
 .container {
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
-.title {
-  font-size: 28px;
-  margin-bottom: 20px;
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 15px;
+  width: 95%;
+  margin: auto;
 }
 
-/* Preview box */
 .preview-box {
-  position: relative;
-  width: 90%;
-  margin: 20px auto;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.preview-box img {
-  width: 100%;
-  display: block;
-  border-radius: 15px;
-}
-
-/* Strong partial blur */
-.partial-blur {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(12px) brightness(60%);
-  pointer-events: none; /* let button be clickable */
-  border-radius: 15px;
-}
-
-/* Locked text and price */
-.locked-text {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  z-index: 2;
-}
-
-/* Buy button */
-.buy-btn {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  background: #0066ff;
-  color: white;
-  padding: 12px 25px;
-  border: none;
+  background: #1a1a1a;
+  padding: 10px;
   border-radius: 12px;
+  position: relative;
+}
+
+.blurred {
+  width: 100%;
+  border-radius: 12px;
+  filter: blur(4px) brightness(75%);
+}
+
+.price-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #0066ff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.buy-btn {
+  margin-top: 8px;
+  background: #00cc66;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .buy-btn:hover {
-  background: #0053cc;
+  background: #00aa55;
 }
 
-/* Payment Modal */
+/* Modal */
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top:0; left:0;
+  width:100%; height:100%;
   background: rgba(0,0,0,0.85);
-  z-index: 10;
-  overflow-y: auto;
 }
 
 .modal-content {
   background: #1a1a1a;
   width: 90%;
-  max-width: 500px;
-  margin: 80px auto;
-  padding: 25px;
-  border-radius: 15px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 12px;
   color: white;
   text-align: center;
 }
@@ -103,59 +79,32 @@ body {
   float: right;
   font-size: 26px;
   cursor: pointer;
+  color: white;
 }
 
 #qrCanvas {
-  margin: 15px 0;
-  border-radius: 15px;
-}
-
-.wallet-address {
-  font-size: 14px;
-  opacity: 0.8;
-  margin-bottom: 10px;
-  word-break: break-all;
-}
-
-.confirm-btn {
-  margin-top: 15px;
-  background: #00cc66;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.confirm-btn:hover {
-  background: #00aa55;
-}
-
-input[type=email], input[type=file] {
   margin: 10px 0;
-  padding: 8px;
+}
+
+/* Inputs */
+input[type=email], input[type=file] {
   width: 80%;
+  margin: 8px 0;
+  padding: 8px;
   border-radius: 8px;
   border: none;
 }
 
-button {
-  cursor: pointer;
-}
-
-/* Loading Animation */
+/* Loader */
 #loadingScreen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 20;
 }
 
 .loader {
