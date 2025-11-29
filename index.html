@@ -3,60 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Private</title>
+  <title>My Private — Exclusive Content</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loadingScreen">
-    <div class="loader"></div>
-    <p>Loading your content...</p>
-  </div>
+<!-- LOADING OVERLAY -->
+<div id="loadingScreen">
+  <div class="loader"></div>
+  <p>Loading your content...</p>
+</div>
 
-  <!-- MAIN GALLERY -->
-  <div class="container">
-    <h1 class="title">Exclusive Content</h1>
+<!-- MAIN CONTENT -->
+<div class="container">
+  <h1 class="title">Exclusive Image Access</h1>
 
-    <div class="gallery" id="gallery"></div>
-  </div>
-
-  <!-- PAYMENT POPUP -->
-  <div id="paymentModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closePayment()">&times;</span>
-      <h2>Complete Payment</h2>
-      <p>Send the amount using the QR code below:</p>
-      <img src="qr.png" class="qr-img" />
-      <p class="wallet-address">YourWalletAddressHere123</p>
-      <input id="emailInput" type="email" placeholder="Enter your email" />
-      <button onclick="confirmPayment()" class="confirm-btn">I Have Paid</button>
+  <!-- IMAGE GALLERY -->
+  <div class="gallery">
+    <div class="preview-box">
+      <img src="https://i.ibb.co/svYZdvjC/20251129-145329.jpg" class="blurred" alt="Locked Content" />
+      <p class="locked-text">Price: $2.50</p>
+      <button onclick="openPayment(2.50, 'https://i.ibb.co/svYZdvjC/20251129-145329.jpg')" class="buy-btn">Buy Now</button>
     </div>
-  </div>
-
-  <!-- ADMIN LOGIN -->
-  <div id="adminLoginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeAdmin()">&times;</span>
-      <h2>Admin Login</h2>
-      <input type="password" id="adminPassword" placeholder="Enter password" />
-      <button onclick="loginAdmin()" class="confirm-btn">Login</button>
+    <div class="preview-box">
+      <img src="https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg" class="blurred" alt="Locked Content" />
+      <p class="locked-text">Price: $3.00</p>
+      <button onclick="openPayment(3.00, 'https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg')" class="buy-btn">Buy Now</button>
     </div>
+    <!-- Repeat for all 14 images, updating price & link -->
   </div>
+</div>
 
-  <!-- ADMIN PANEL -->
-  <div id="adminPanel" class="container" style="display:none;">
-    <h2>Admin Panel</h2>
-    <input type="text" id="imageUrl" placeholder="Image URL" />
-    <input type="number" id="imagePrice" placeholder="Price ($)" />
-    <button onclick="addImage()" class="confirm-btn">Add Image</button>
-    <h3>Gallery Preview</h3>
-    <div class="gallery" id="adminGallery"></div>
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePayment()">&times;</span>
+    <h2>Complete Payment</h2>
+    <p>Send the payment using the QR code below:</p>
+    <img src="qr.png" class="qr-img" alt="QR Code" />
+    <p class="wallet-address">4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy</p>
+
+    <input id="emailInput" type="email" placeholder="Enter your email" />
+    <input id="paymentProof" type="file" accept="image/*" />
+
+    <button onclick="confirmPayment()" class="confirm-btn">Submit Payment Proof</button>
   </div>
+</div>
 
-  <button id="adminBtn" onclick="openAdmin()" class="buy-btn">Admin Login</button>
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
