@@ -6,42 +6,62 @@ body {
   text-align: center;
 }
 
+/* Container and title */
 .container {
   margin-top: 60px;
 }
 
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Preview box */
 .preview-box {
+  position: relative;
   width: 90%;
   margin: 20px auto;
-  background: #1a1a1a;
-  padding: 20px;
   border-radius: 15px;
-  position: relative;
+  overflow: hidden;
 }
 
 .preview-box img {
   width: 100%;
+  display: block;
   border-radius: 15px;
 }
 
+/* Strong partial blur */
 .partial-blur {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(12px) brightness(60%);
+  pointer-events: none; /* let button be clickable */
   border-radius: 15px;
-  background: linear-gradient(to left, rgba(13,13,13,0.6) 40%, rgba(13,13,13,0) 70%);
-  pointer-events: none;
 }
 
+/* Locked text and price */
 .locked-text {
-  margin-top: 10px;
-  opacity: 0.9;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 2;
 }
 
+/* Buy button */
 .buy-btn {
-  margin-top: 15px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
   background: #0066ff;
   color: white;
   padding: 12px 25px;
@@ -55,7 +75,7 @@ body {
   background: #0053cc;
 }
 
-/* PAYMENT MODAL */
+/* Payment Modal */
 .modal {
   display: none;
   position: fixed;
@@ -64,15 +84,19 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.85);
+  z-index: 10;
+  overflow-y: auto;
 }
 
 .modal-content {
   background: #1a1a1a;
   width: 90%;
-  margin: 120px auto;
+  max-width: 500px;
+  margin: 80px auto;
   padding: 25px;
   border-radius: 15px;
   color: white;
+  text-align: center;
 }
 
 .close {
@@ -81,13 +105,19 @@ body {
   cursor: pointer;
 }
 
+#qrCanvas {
+  margin: 15px 0;
+  border-radius: 15px;
+}
+
 .wallet-address {
   font-size: 14px;
   opacity: 0.8;
-  margin: 10px 0;
+  margin-bottom: 10px;
+  word-break: break-all;
 }
 
-.confirm-btn, .copy-btn {
+.confirm-btn {
   margin-top: 15px;
   background: #00cc66;
   color: white;
@@ -97,8 +127,20 @@ body {
   cursor: pointer;
 }
 
-.confirm-btn:hover, .copy-btn:hover {
+.confirm-btn:hover {
   background: #00aa55;
+}
+
+input[type=email], input[type=file] {
+  margin: 10px 0;
+  padding: 8px;
+  width: 80%;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* Loading Animation */
@@ -113,7 +155,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 20;
 }
 
 .loader {
