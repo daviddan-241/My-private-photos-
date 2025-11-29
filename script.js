@@ -1,68 +1,84 @@
-// EMAILJS INIT
+// Initialize EmailJS
 emailjs.init("n84eVGeczJMPu9O6U");
 
+// Wallet address (update with your real address)
+const walletAddress = "4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy";
+
+// Hide loading screen after 2 seconds
 setTimeout(() => {
   document.getElementById("loadingScreen").style.display = "none";
 }, 2000);
 
-const wallets = [
-  "4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy",
-  "D5qxyiLWwa7ZKRQYTLdLPJJmG1nMpCEGty",
-  "bc1qdrw4yztttnnd35h33kmkw4tmhex9vkd83r8jg3",
-  "0xff14ff21cecbfc487a0a7695ee16fe1ebf425bde"
-];
+let selectedPrice = "";
+let selectedImage = "";
 
-let selectedWallet = wallets[0];
-let selectedPrice = "2.50";
-let selectedFile = "";
-
-function openPayment(price, file) {
+// Open payment modal
+function openPayment(price, image) {
   selectedPrice = price;
-  selectedFile = file;
+  selectedImage = image;
   document.getElementById("paymentPrice").innerText = `Send $${price} using the QR code below:`;
-  showQR(selectedWallet);
+  document.getElementById("selectedWallet").innerText = walletAddress;
+
+  // Generate QR code
+  const qr = new QRious({
+    element: document.getElementById('qrCanvas'),
+    value: walletAddress,
+    size: 200
+  });
+
   document.getElementById("paymentModal").style.display = "block";
 }
 
+// Close payment modal
 function closePayment() {
   document.getElementById("paymentModal").style.display = "none";
 }
 
-function showQR(wallet) {
-  const qr = new QRious({
-    element: document.getElementById('qrCanvas'),
-    value: wallet,
-    size: 220
-  });
-  document.getElementById("selectedWallet").innerText = wallet;
-}
-
+// Copy wallet to clipboard
 function copyWallet() {
-  const walletText = document.getElementById("selectedWallet").innerText;
-  navigator.clipboard.writeText(walletText).then(() => {
-    alert("Wallet copied to clipboard!");
+  navigator.clipboard.writeText(walletAddress).then(() => {
+    alert("Wallet address copied!");
   });
 }
 
+// Confirm payment and send email
 function confirmPayment() {
-  const email = document.getElementById("emailInput").value.trim();
-  if (!email) {
+  let email = document.getElementById("emailInput").value;
+  let proof = document.getElementById("paymentProof").files[0];
+
+  if (email.trim() === "") {
     alert("Enter your email to receive the download link.");
     return;
   }
 
-  const downloadURL = `https://yourwebsite.com/download.html?file=${encodeURIComponent(selectedFile)}`;
-
-  emailjs.send("service_mod4e09", "template_r2cb89v", {
+  // Prepare email data
+  const formData = {
     user_email: email,
-    download_link: downloadURL
-  })
+    download_link: selectedImage,
+    price: selectedPrice
+  };
+
+  if (proof) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      formData.payment_proof = event.target.result; // attach as base64
+      sendEmail(formData);
+    }
+    reader.readAsDataURL(proof);
+  } else {
+    sendEmail(formData);
+  }
+}
+
+// Send email using EmailJS
+function sendEmail(data) {
+  emailjs.send("service_mod4e09", "template_r2cb89v", data)
   .then(() => {
     alert("Payment confirmed! Download link sent to your email.");
     closePayment();
   })
-  .catch(err => {
-    console.error(err);
-    alert("Error sending email. Please try again.");
+  .catch((err) => {
+    alert("Error sending email. Check console.");
+    console.log(err);
   });
 }
