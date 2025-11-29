@@ -38,8 +38,10 @@
         <button class="wallet-btn" onclick="showQR('Other','D5qxyiLWwa7ZKRQYTLdLPJJmG1nMpCEGty')">Other</button>
       </div>
 
-      <img id="qrImage" class="qr-img" alt="QR Code" />
-      <p id="selectedWallet" class="wallet-address"></p>
+      <div class="qr-container">
+        <img id="qrImage" class="qr-img" alt="QR Code" onclick="copyWallet()" title="Click to copy wallet"/>
+        <p id="selectedWallet" class="wallet-address" onclick="copyWallet()" title="Click to copy wallet"></p>
+      </div>
 
       <input id="emailInput" type="email" placeholder="Enter your email" />
       <button class="confirm-btn" onclick="confirmPayment()">I Have Paid</button>
