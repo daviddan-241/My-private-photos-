@@ -3,57 +3,38 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Download Your Content</title>
+<title>My Private Downloads</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="container">
-  <h1 class="title">Download Your Content</h1>
-  <p>Please enter your email used for payment to access your download:</p>
+  <h1 class="title">My Private Downloads</h1>
 
-  <input type="email" id="downloadEmail" placeholder="Enter your email" />
-  <button onclick="verifyDownload()">Get Downloads</button>
+  <!-- ADMIN LOGIN -->
+  <div id="adminLogin">
+    <h2>Admin Login</h2>
+    <input type="password" id="adminPassword" placeholder="Enter Admin Password" />
+    <button onclick="loginAdmin()">Login</button>
+    <p style="color:red;" id="adminError"></p>
+  </div>
 
-  <div id="downloads" style="margin-top:20px;"></div>
+  <!-- ADMIN UPLOAD -->
+  <div id="adminPanel" style="display:none;">
+    <h2>Upload New Content</h2>
+    <input type="file" id="newContent" />
+    <input type="text" id="newPrice" placeholder="Set Price ($)" />
+    <button onclick="uploadContent()">Upload</button>
+    <p id="uploadMessage" style="color:#00ccff;"></p>
+  </div>
+
+  <!-- USER DOWNLOADS -->
+  <div id="userDownloads">
+    <h2>Your Purchased Content</h2>
+    <div id="downloadsList" class="gallery"></div>
+  </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-emailjs.init("n84eVGeczJMPu9O6U");
-
-// Dummy list of purchased content for demonstration
-const purchasedContent = [
-  {email:"buyer@example.com", items:[{name:"Content 1", url:"https://i.ibb.co/svYZdvjC/20251129-145329.jpg"},
-                                     {name:"Content 2", url:"https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg"}]},
-  // Add more entries as buyers purchase
-];
-
-function verifyDownload() {
-  const email = document.getElementById("downloadEmail").value.trim();
-  if(email === "") { alert("Enter your email."); return; }
-
-  const userData = purchasedContent.find(p => p.email.toLowerCase() === email.toLowerCase());
-  const downloadsDiv = document.getElementById("downloads");
-  downloadsDiv.innerHTML = "";
-
-  if(!userData) {
-    downloadsDiv.innerHTML = "<p style='color:red;'>No purchases found for this email.</p>";
-    return;
-  }
-
-  userData.items.forEach(item => {
-    const link = document.createElement("a");
-    link.href = item.url;
-    link.innerText = `Download ${item.name}`;
-    link.target = "_blank";
-    link.style.display = "block";
-    link.style.margin = "10px 0";
-    link.style.color = "#00ccff";
-    downloadsDiv.appendChild(link);
-  });
-}
-</script>
-
+<script src="download.js"></script>
 </body>
 </html>
