@@ -1,49 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Private — Exclusive Content</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Private</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loadingScreen">
-    <div class="loader"></div>
-    <p>Loading your content...</p>
-  </div>
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">
+  <div class="loader"></div>
+  <p>Loading your content...</p>
+</div>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
-    <h1 class="title">Exclusive Image Access</h1>
-    <div class="gallery"></div>
-  </div>
+<!-- MAIN CONTENT -->
+<div class="container">
+  <h1 class="title">My Private</h1>
+  <div class="gallery">
 
-  <!-- PAYMENT MODAL -->
-  <div id="paymentModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closePayment()">&times;</span>
-      <h2>Complete Payment</h2>
-      <p>Select Crypto:</p>
-      <div class="crypto-buttons">
-        <button onclick="showCrypto('BTC')">BTC</button>
-        <button onclick="showCrypto('ETH')">ETH</button>
-        <button onclick="showCrypto('SOL')">SOL</button>
-        <button onclick="showCrypto('BSC')">BSC</button>
-      </div>
-      <div id="cryptoInfo" style="display:none;">
-        <img id="cryptoQR" src="" class="qr-img">
-        <p id="cryptoAddress"></p>
-      </div>
-      <p>Upload payment proof:</p>
-      <input type="file" id="paymentProof" accept="image/*">
-      <input id="emailInput" type="email" placeholder="Enter your email">
+    <!-- IMAGE 1 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/svYZdvjC/20251129-145329.jpg" class="blurred" alt="Content 1" />
+      <p class="locked-text">Price: $2.50</p>
+      <button onclick="openPayment('1', 2.5)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 2 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg" class="blurred" alt="Content 2" />
+      <p class="locked-text">Price: $3.00</p>
+      <button onclick="openPayment('2', 3)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 3 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg" class="blurred" alt="Content 3" />
+      <p class="locked-text">Price: $2.75</p>
+      <button onclick="openPayment('3', 2.75)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 4 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/JWJxTp7y/20251129-145227.jpg" class="blurred" alt="Content 4" />
+      <p class="locked-text">Price: $3.50</p>
+      <button onclick="openPayment('4', 3.5)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 5 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/G3GHgypc/20251129-145234.jpg" class="blurred" alt="Content 5" />
+      <p class="locked-text">Price: $2.25</p>
+      <button onclick="openPayment('5', 2.25)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 6 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/G33pCqcQ/20251129-145108.jpg" class="blurred" alt="Content 6" />
+      <p class="locked-text">Price: $4.00</p>
+      <button onclick="openPayment('6', 4)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 7 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/yct6MV5C/20251129-145149.jpg" class="blurred" alt="Content 7" />
+      <p class="locked-text">Price: $3.75</p>
+      <button onclick="openPayment('7', 3.75)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 8 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/0R9HT4cy/20251129-145039.jpg" class="blurred" alt="Content 8" />
+      <p class="locked-text">Price: $2.90</p>
+      <button onclick="openPayment('8', 2.9)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 9 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/MyR8TNTt/20251129-145049.jpg" class="blurred" alt="Content 9" />
+      <p class="locked-text">Price: $3.20</p>
+      <button onclick="openPayment('9', 3.2)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 10 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/fYNLzc8D/20251129-145027.jpg" class="blurred" alt="Content 10" />
+      <p class="locked-text">Price: $3.10</p>
+      <button onclick="openPayment('10', 3.1)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 11 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg" class="blurred" alt="Content 11" />
+      <p class="locked-text">Price: $2.60</p>
+      <button onclick="openPayment('11', 2.6)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 12 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/pBPcvQpB/20251129-144820.jpg" class="blurred" alt="Content 12" />
+      <p class="locked-text">Price: $3.40</p>
+      <button onclick="openPayment('12', 3.4)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 13 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg" class="blurred" alt="Content 13" />
+      <p class="locked-text">Price: $2.80</p>
+      <button onclick="openPayment('13', 2.8)" class="buy-btn">Buy Now</button>
+    </div>
+
+    <!-- IMAGE 14 -->
+    <div class="preview-box">
+      <img src="https://i.ibb.co/9C6Z59F/20251129-144817.jpg" class="blurred" alt="Content 14" />
+      <p class="locked-text">Price: $3.00</p>
+      <button onclick="openPayment('14', 3)" class="buy-btn">Buy Now</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePayment()">&times;</span>
+    <h2>Complete Payment</h2>
+    <p>Select the cryptocurrency you want to pay with:</p>
+
+    <div class="crypto-buttons">
+      <button onclick="selectCrypto('BTC')">Bitcoin</button>
+      <button onclick="selectCrypto('ETH')">Ethereum</button>
+      <button onclick="selectCrypto('SOL')">Solana</button>
+      <button onclick="selectCrypto('BSC')">BSC</button>
+    </div>
+
+    <div id="cryptoDetails" style="display:none; margin-top:15px;">
+      <p id="cryptoName"></p>
+      <p id="cryptoAddress" class="wallet-address"></p>
+      <input id="emailInput" type="email" placeholder="Enter your email"/>
       <button onclick="confirmPayment()" class="confirm-btn">I Have Paid</button>
     </div>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
