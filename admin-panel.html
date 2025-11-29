@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — My Private</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="admin-panel">
+    <h1>Welcome, Admin</h1>
+    <p>Upload new images, manage prices, view payment confirmations</p>
+    
+    <input type="file" id="uploadImage" multiple>
+    <input type="number" id="priceInput" placeholder="Set Price ($)">
+    <button onclick="uploadImages()">Upload</button>
+    
+    <div id="uploadedList"></div>
+  </div>
+
+  <script>
+    function uploadImages() {
+      const files = document.getElementById('uploadImage').files;
+      const price = document.getElementById('priceInput').value;
+      if(files.length === 0 || price === "") {
+        alert("Select files and enter price!");
+        return;
+      }
+
+      const uploadedList = document.getElementById('uploadedList');
+      for(let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.style.width = "150px";
+          img.style.margin = "5px";
+          uploadedList.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+      }
+
+      alert("Images uploaded for preview. Buyers will see them after you update the gallery!");
+    }
+  </script>
+</body>
+</html>
