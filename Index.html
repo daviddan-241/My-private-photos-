@@ -8,29 +8,29 @@
 </head>
 <body>
 
-  <!-- LOADING OVERLAY -->
+  <!-- LOADING SCREEN -->
   <div id="loadingScreen">
     <div class="loader"></div>
     <p>Loading your content...</p>
   </div>
 
-  <!-- MAIN GALLERY -->
+  <!-- MAIN CONTAINER -->
   <div class="container">
-    <h1 class="title">Exclusive Image Gallery</h1>
+    <h1 class="title">Exclusive Content</h1>
     <div id="gallery" class="gallery"></div>
-    <div style="text-align:center; margin-top:20px;">
-      <button class="cart-btn" onclick="openPayment()">Checkout Selected ($<span id="cartTotal">0</span>)</button>
-    </div>
+    <button class="cart-btn" onclick="openPayment()">Checkout ($<span id="cartTotal">0</span>)</button>
   </div>
 
-  <!-- PAYMENT POPUP -->
+  <!-- PAYMENT MODAL -->
   <div id="paymentModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closePayment()">&times;</span>
-
       <h2>Complete Payment</h2>
-      <p>Select your crypto and pay the total amount:</p>
 
+      <p>Selected images:</p>
+      <div id="selectedPreview" class="selected-preview"></div>
+
+      <p>Select your crypto wallet:</p>
       <div class="wallet-list">
         <button class="wallet-btn" onclick="showQR('Bitcoin','bc1qdrw4yztttnnd35h33kmkw4tmhex9vkd83r8jg3')">Bitcoin</button>
         <button class="wallet-btn" onclick="showQR('Ethereum','0xff14ff21cecbfc487a0a7695ee16fe1ebf425bde')">Ethereum</button>
@@ -38,18 +38,16 @@
         <button class="wallet-btn" onclick="showQR('Other','D5qxyiLWwa7ZKRQYTLdLPJJmG1nMpCEGty')">Other</button>
       </div>
 
-      <img id="qrImage" src="" class="qr-img" alt="QR Code will appear here" />
+      <img id="qrImage" class="qr-img" alt="QR Code" />
       <p id="selectedWallet" class="wallet-address"></p>
 
       <input id="emailInput" type="email" placeholder="Enter your email" />
-
-      <button onclick="confirmPayment()" class="confirm-btn">I Have Paid</button>
+      <button class="confirm-btn" onclick="confirmPayment()">I Have Paid</button>
     </div>
   </div>
 
-  <!-- QR Code library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
-        </html>
+</html>
