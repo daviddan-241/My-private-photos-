@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — My Private</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="admin-login">
+    <h1>Admin Login</h1>
+    <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+    <button onclick="checkAdmin()">Login</button>
+    <p id="errorMsg" style="color:red;"></p>
+  </div>
+
+  <script>
+    function checkAdmin() {
+      const pwd = document.getElementById('adminPassword').value;
+      if(pwd === "Daviddan09") {
+        // Redirect to admin panel
+        window.location.href = "admin-panel.html";
+      } else {
+        document.getElementById('errorMsg').innerText = "Wrong password!";
+      }
+    }
+  </script>
+</body>
+</html>
