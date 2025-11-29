@@ -22,22 +22,24 @@ const products = [
 
 let selectedProducts = [];
 const gallery = document.getElementById("gallery");
+const selectedPreview = document.getElementById("selectedPreview");
 
-products.forEach((product, index) => {
+// Populate gallery
+products.forEach((product,index) => {
   const card = document.createElement("div");
   card.className = "preview-box";
   card.innerHTML = `
     <img src="${product.url}" alt="Preview" />
     <div class="partial-blur"></div>
-    <p class="locked-text">This content is locked — $${product.price}</p>
+    <p class="locked-text">Locked — $${product.price}</p>
     <button class="buy-btn" onclick="toggleSelection(${index})">Select / Deselect</button>
   `;
   gallery.appendChild(card);
 });
 
 function toggleSelection(index) {
-  const selectedIndex = selectedProducts.indexOf(index);
-  if (selectedIndex > -1) selectedProducts.splice(selectedIndex, 1);
+  const i = selectedProducts.indexOf(index);
+  if(i>-1) selectedProducts.splice(i,1);
   else selectedProducts.push(index);
   updateCartTotal();
 }
@@ -45,42 +47,47 @@ function toggleSelection(index) {
 function updateCartTotal() {
   const total = selectedProducts.reduce((sum, idx) => sum + products[idx].price, 0);
   document.getElementById("cartTotal").innerText = total.toFixed(2);
+  updateSelectedPreview();
+}
+
+function updateSelectedPreview() {
+  selectedPreview.innerHTML = "";
+  selectedProducts.forEach(idx => {
+    const img = document.createElement("img");
+    img.src = products[idx].url;
+    selectedPreview.appendChild(img);
+  });
 }
 
 function openPayment() {
-  if (selectedProducts.length === 0) {
-    alert("Select at least one image to purchase.");
-    return;
-  }
-  document.getElementById("paymentModal").style.display = "block";
+  if(selectedProducts.length===0){ alert("Select at least one image."); return; }
+  document.getElementById("paymentModal").style.display="block";
 }
 
-function closePayment() { document.getElementById("paymentModal").style.display = "none"; }
+function closePayment() { document.getElementById("paymentModal").style.display="none"; }
 
-function showQR(type, address) {
+function showQR(type,address){
   document.getElementById("selectedWallet").innerText = `${type}: ${address}`;
-  new QRious({ element: document.getElementById('qrImage'), value: address, size: 220 });
+  new QRious({element: document.getElementById('qrImage'), value: address, size:220});
 }
 
 function confirmPayment() {
   const email = document.getElementById("emailInput").value;
   const wallet = document.getElementById("selectedWallet").innerText;
 
-  if (!wallet) { alert("Select a wallet first."); return; }
-  if (!email) { alert("Enter your email."); return; }
+  if(!wallet){ alert("Select a wallet."); return; }
+  if(!email){ alert("Enter your email."); return; }
 
-  const selectedUrls = selectedProducts.map(idx => products[idx].url);
-  const downloadPageUrl = `download.html?images=${encodeURIComponent(selectedUrls.join(','))}`;
+  const links = selectedProducts.map(idx=>products[idx].url).join('\n');
 
-  emailjs.send("service_mod4e09", "template_r2cb89v", {
+  emailjs.send("service_mod4e09","template_r2cb89v",{
     user_email: email,
-    download_link: window.location.origin + '/' + downloadPageUrl,
+    download_link: links,
     wallet_used: wallet
-  }).then(() => {
-    alert("Payment confirmed! Download link sent to your email.");
-    window.open(downloadPageUrl, "_blank");
+  }).then(()=>{
+    alert("Payment confirmed! Check your email for download links.");
     closePayment();
-    selectedProducts = [];
+    selectedProducts=[];
     updateCartTotal();
-  }).catch(err => { alert("Error sending email."); console.log(err); });
-  }
+  }).catch(err=>{ alert("Error sending email."); console.log(err); });
+}
