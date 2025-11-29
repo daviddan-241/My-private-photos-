@@ -3,34 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Private — Your Download</title>
+  <title>Your Download — My Private</title>
   <style>
-    body { background:#0d0d0d; color:white; text-align:center; font-family:Arial; margin-top:70px; }
-    a { background:#0066ff; padding:12px 20px; color:white; border-radius:10px; text-decoration:none; display:inline-block; margin-top:20px; }
-    a:hover { background:#0053cc; }
-    h1 { font-size:28px; }
-    p { font-size:18px; }
+    body {
+      background: #0d0d0d;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    a {
+      display: inline-block;
+      margin: 15px 0;
+      background: #0066ff;
+      padding: 12px 25px;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    a:hover {
+      background: #0053cc;
+    }
+    h1 { margin-bottom: 10px; }
+    p { opacity: 0.8; }
   </style>
 </head>
 <body>
 
-<h1>Your Purchase Is Ready</h1>
+<h1>Your Purchase is Ready</h1>
 <p>Click below to download your exclusive content:</p>
-<a id="downloadLink" href="#" download>Download Now</a>
+
+<!-- Replace the href with the actual image URL sent to email -->
+<a id="downloadLink" href="" download>Download Now</a>
 
 <script>
-  // Get the image link passed via query parameter
-  const params = new URLSearchParams(window.location.search);
-  const img = params.get('img');
+  // Get URL params to identify which image
+  const urlParams = new URLSearchParams(window.location.search);
+  const imgUrl = urlParams.get('img');
 
-  const link = document.getElementById('downloadLink');
-  
-  if(img) {
-    link.href = img;
+  const downloadLink = document.getElementById('downloadLink');
+
+  if(imgUrl) {
+    downloadLink.href = imgUrl;
   } else {
-    link.innerText = "No download available. Please complete payment first.";
-    link.style.pointerEvents = "none";
-    link.style.opacity = 0.6;
+    downloadLink.textContent = "Invalid or expired link";
+    downloadLink.style.pointerEvents = "none";
+    downloadLink.style.opacity = "0.5";
   }
 </script>
 
