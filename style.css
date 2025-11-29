@@ -11,39 +11,39 @@ body {
 }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  width: 90%;
+  margin: auto;
 }
 
 .preview-box {
-  width: 250px;
   background: #1a1a1a;
-  padding: 15px;
+  padding: 10px;
   border-radius: 15px;
   position: relative;
 }
 
 .blurred {
   width: 100%;
-  filter: blur(5px);
+  filter: blur(6px) brightness(80%);
   border-radius: 15px;
 }
 
 .locked-text {
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 5px;
+  opacity: 0.8;
   font-weight: bold;
 }
 
 .buy-btn {
-  margin-top: 10px;
+  margin-top: 8px;
   background: #0066ff;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 20px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
 }
@@ -52,7 +52,6 @@ body {
   background: #0053cc;
 }
 
-/* Payment Modal */
 .modal {
   display: none;
   position: fixed;
@@ -61,17 +60,16 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.85);
-  z-index: 10;
+  overflow-y: auto;
 }
 
 .modal-content {
   background: #1a1a1a;
   width: 90%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 100px auto;
   padding: 20px;
   border-radius: 15px;
-  color: white;
 }
 
 .close {
@@ -81,14 +79,15 @@ body {
 }
 
 .qr-img {
-  width: 220px;
-  margin: 15px 0;
+  width: 200px;
+  height: 200px;
+  margin: 10px auto;
 }
 
 .wallet-address {
   font-size: 14px;
   opacity: 0.8;
-  margin-bottom: 10px;
+  word-break: break-all;
 }
 
 .confirm-btn {
@@ -104,7 +103,6 @@ body {
   background: #00aa55;
 }
 
-/* Loading Animation */
 #loadingScreen {
   position: fixed;
   top: 0;
@@ -116,7 +114,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 100;
+  z-index: 9999;
 }
 
 .loader {
