@@ -72,7 +72,6 @@ body {
 }
 
 .buy-btn,
-.cart-btn,
 .wallet-btn,
 .confirm-btn {
   margin-top: 10px;
@@ -91,17 +90,6 @@ body {
 .buy-btn:hover,
 .wallet-btn:hover {
   background: #0053cc;
-}
-
-.cart-btn {
-  background: #00cc66;
-  color: white;
-  font-size: 16px;
-  margin-top: 20px;
-}
-
-.cart-btn:hover {
-  background: #00aa55;
 }
 
 .confirm-btn {
