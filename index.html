@@ -5,52 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Private — Exclusive Content</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
+
 <body>
 
-<!-- LOADING OVERLAY -->
-<div id="loadingScreen">
-  <div class="loader"></div>
-  <p>Loading your content...</p>
-</div>
-
-<!-- MAIN CONTENT -->
-<div class="container">
-  <h1 class="title">Exclusive Image Access</h1>
-
-  <!-- IMAGE GALLERY -->
-  <div class="gallery">
-    <div class="preview-box">
-      <img src="https://i.ibb.co/svYZdvjC/20251129-145329.jpg" class="blurred" alt="Locked Content" />
-      <p class="locked-text">Price: $2.50</p>
-      <button onclick="openPayment(2.50, 'https://i.ibb.co/svYZdvjC/20251129-145329.jpg')" class="buy-btn">Buy Now</button>
-    </div>
-    <div class="preview-box">
-      <img src="https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg" class="blurred" alt="Locked Content" />
-      <p class="locked-text">Price: $3.00</p>
-      <button onclick="openPayment(3.00, 'https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg')" class="buy-btn">Buy Now</button>
-    </div>
-    <!-- Repeat for all 14 images, updating price & link -->
+  <!-- LOADING OVERLAY -->
+  <div id="loadingScreen">
+    <div class="loader"></div>
+    <p>Loading your content...</p>
   </div>
-</div>
 
-<!-- PAYMENT MODAL -->
-<div id="paymentModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closePayment()">&times;</span>
-    <h2>Complete Payment</h2>
-    <p>Send the payment using the QR code below:</p>
-    <img src="qr.png" class="qr-img" alt="QR Code" />
-    <p class="wallet-address">4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy</p>
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h1 class="title">Exclusive Image Access</h1>
 
-    <input id="emailInput" type="email" placeholder="Enter your email" />
-    <input id="paymentProof" type="file" accept="image/*" />
+    <div class="gallery">
+      <!-- Images with prices -->
+      <div class="preview-box">
+        <img src="https://i.ibb.co/svYZdvjC/20251129-145329.jpg" class="blurred" alt="Image 1" />
+        <p class="locked-text">$2.50</p>
+        <button onclick="openPayment('https://i.ibb.co/svYZdvjC/20251129-145329.jpg',2.5)" class="buy-btn">Buy Now</button>
+      </div>
 
-    <button onclick="confirmPayment()" class="confirm-btn">Submit Payment Proof</button>
+      <div class="preview-box">
+        <img src="https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg" class="blurred" alt="Image 2" />
+        <p class="locked-text">$3.00</p>
+        <button onclick="openPayment('https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg',3.0)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg" class="blurred" alt="Image 3" />
+        <p class="locked-text">$2.00</p>
+        <button onclick="openPayment('https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg',2.0)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/JWJxTp7y/20251129-145227.jpg" class="blurred" alt="Image 4" />
+        <p class="locked-text">$3.50</p>
+        <button onclick="openPayment('https://i.ibb.co/JWJxTp7y/20251129-145227.jpg',3.5)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/G3GHgypc/20251129-145234.jpg" class="blurred" alt="Image 5" />
+        <p class="locked-text">$2.75</p>
+        <button onclick="openPayment('https://i.ibb.co/G3GHgypc/20251129-145234.jpg',2.75)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/G33pCqcQ/20251129-145108.jpg" class="blurred" alt="Image 6" />
+        <p class="locked-text">$4.00</p>
+        <button onclick="openPayment('https://i.ibb.co/G33pCqcQ/20251129-145108.jpg',4.0)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/yct6MV5C/20251129-145149.jpg" class="blurred" alt="Image 7" />
+        <p class="locked-text">$3.25</p>
+        <button onclick="openPayment('https://i.ibb.co/yct6MV5C/20251129-145149.jpg',3.25)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/0R9HT4cy/20251129-145039.jpg" class="blurred" alt="Image 8" />
+        <p class="locked-text">$2.50</p>
+        <button onclick="openPayment('https://i.ibb.co/0R9HT4cy/20251129-145039.jpg',2.5)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/MyR8TNTt/20251129-145049.jpg" class="blurred" alt="Image 9" />
+        <p class="locked-text">$3.50</p>
+        <button onclick="openPayment('https://i.ibb.co/MyR8TNTt/20251129-145049.jpg',3.5)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/fYNLzc8D/20251129-145027.jpg" class="blurred" alt="Image 10" />
+        <p class="locked-text">$2.75</p>
+        <button onclick="openPayment('https://i.ibb.co/fYNLzc8D/20251129-145027.jpg',2.75)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg" class="blurred" alt="Image 11" />
+        <p class="locked-text">$3.00</p>
+        <button onclick="openPayment('https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg',3.0)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/pBPcvQpB/20251129-144820.jpg" class="blurred" alt="Image 12" />
+        <p class="locked-text">$4.00</p>
+        <button onclick="openPayment('https://i.ibb.co/pBPcvQpB/20251129-144820.jpg',4.0)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg" class="blurred" alt="Image 13" />
+        <p class="locked-text">$2.50</p>
+        <button onclick="openPayment('https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg',2.5)" class="buy-btn">Buy Now</button>
+      </div>
+
+      <div class="preview-box">
+        <img src="https://i.ibb.co/9C6Z59F/20251129-144817.jpg" class="blurred" alt="Image 14" />
+        <p class="locked-text">$3.25</p>
+        <button onclick="openPayment('https://i.ibb.co/9C6Z59F/20251129-144817.jpg',3.25)" class="buy-btn">Buy Now</button>
+      </div>
+    </div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="script.js"></script>
+  <!-- PAYMENT MODAL -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePayment()">&times;</span>
+      <h2>Complete Payment</h2>
+      <p>Send your payment using any of the options below:</p>
+
+      <div id="cryptoOptions">
+        <div class="crypto-option">
+          <h3>SOL</h3>
+          <div id="qr-sol" class="qr-img"></div>
+          <p class="wallet-address">4ri9biLdoFkfq7nrkFVjDXGj2yX1bg1U3q5SGUt1WgVy</p>
+        </div>
+
+        <div class="crypto-option">
+          <h3>SOL (Alternative)</h3>
+          <div id="qr-sol2" class="qr-img"></div>
+          <p class="wallet-address">D5qxyiLWwa7ZKRQYTLdLPJJmG1nMpCEGty</p>
+        </div>
+
+        <div class="crypto-option">
+          <h3>BTC</h3>
+          <div id="qr-btc" class="qr-img"></div>
+          <p class="wallet-address">bc1qdrw4yztttnnd35h33kmkw4tmhex9vkd83r8jg3</p>
+        </div>
+
+        <div class="crypto-option">
+          <h3>ETH</h3>
+          <div id="qr-eth" class="qr-img"></div>
+          <p class="wallet-address">0xff14ff21cecbfc487a0a7695ee16fe1ebf425bde</p>
+        </div>
+      </div>
+
+      <input id="emailInput" type="email" placeholder="Enter your email" />
+      <button onclick="confirmPayment()" class="confirm-btn">I Have Paid</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
