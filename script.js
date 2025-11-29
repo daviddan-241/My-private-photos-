@@ -1,12 +1,20 @@
 emailjs.init("n84eVGeczJMPu9O6U");
 
 const items = [
-  { src:"https://i.ibb.co/svYZdvjC/20251129-145329.jpg", type:"image", price:2.5 },
-  { src:"https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg", type:"image", price:3 },
-  { src:"https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg", type:"image", price:2 },
-  { src:"https://i.ibb.co/JWJxTp7y/20251129-145227.jpg", type:"image", price:4 },
-  { src:"https://i.ibb.co/G3GHgypc/20251129-145234.jpg", type:"image", price:2.2 },
-  { src:"https://i.ibb.co/G33pCqcQ/20251129-145108.jpg", type:"image", price:3.1 }
+  { src:"https://i.ibb.co/svYZdvjC/20251129-145329.jpg", price:2.5 },
+  { src:"https://i.ibb.co/Z1WTQ08G/20251129-145311.jpg", price:3 },
+  { src:"https://i.ibb.co/PZJ1Cfqv/20251129-145249.jpg", price:2 },
+  { src:"https://i.ibb.co/JWJxTp7y/20251129-145227.jpg", price:4 },
+  { src:"https://i.ibb.co/G3GHgypc/20251129-145234.jpg", price:2.2 },
+  { src:"https://i.ibb.co/G33pCqcQ/20251129-145108.jpg", price:3.1 },
+  { src:"https://i.ibb.co/yct6MV5C/20251129-145149.jpg", price:2.8 },
+  { src:"https://i.ibb.co/0R9HT4cy/20251129-145039.jpg", price:3 },
+  { src:"https://i.ibb.co/MyR8TNTt/20251129-145049.jpg", price:2.7 },
+  { src:"https://i.ibb.co/fYNLzc8D/20251129-145027.jpg", price:2.9 },
+  { src:"https://i.ibb.co/Pvtzd2X1/20251129-145030.jpg", price:3.5 },
+  { src:"https://i.ibb.co/pBPcvQpB/20251129-144820.jpg", price:2.5 },
+  { src:"https://i.ibb.co/PsxJQ3tx/20251129-144911.jpg", price:3.2 },
+  { src:"https://i.ibb.co/9C6Z59F/20251129-144817.jpg", price:2.8 }
 ];
 
 const gallery = document.getElementById("gallery");
