@@ -1,22 +1,133 @@
-body { margin:0; font-family:Arial; background:#0d0d0d; color:white; text-align:center; }
-.container { margin-top:60px; }
-.gallery { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; }
-.preview-box { background:#1a1a1a; padding:10px; border-radius:12px; width:200px; position:relative; }
-.blurred { width:100%; filter:blur(3px) brightness(85%); border-radius:12px; }
-.locked-text { position:absolute; bottom:45px; left:0; width:100%; font-size:16px; font-weight:bold; color:#fff; }
-.buy-btn { margin-top:10px; background:#0066ff; color:white; padding:8px 15px; border:none; border-radius:10px; cursor:pointer; z-index:2; position:relative; }
-.buy-btn:hover { background:#0053cc; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: white;
+  text-align: center;
+}
 
-/* Modal */
-.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); }
-.modal-content { background:#1a1a1a; width:90%; max-width:400px; margin:100px auto; padding:25px; border-radius:15px; color:white; text-align:center; }
-.close { float:right; font-size:26px; cursor:pointer; }
-.qr-img { width:200px; margin:15px 0; }
-.wallet-address { font-size:14px; opacity:0.8; margin-bottom:10px; }
-.confirm-btn { background:#00cc66; color:white; padding:10px 20px; border:none; border-radius:10px; }
-.confirm-btn:hover { background:#00aa55; }
+.container {
+  margin-top: 60px;
+}
 
-/* Loader */
-#loadingScreen { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; display:flex; justify-content:center; align-items:center; flex-direction:column; }
-.loader { border:5px solid #333; border-top:5px solid #00ccff; border-radius:50%; width:50px; height:50px; animation: spin 1s linear infinite; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.preview-box {
+  width: 250px;
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.blurred {
+  width: 100%;
+  filter: blur(5px);
+  border-radius: 15px;
+}
+
+.locked-text {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.buy-btn {
+  margin-top: 10px;
+  background: #0066ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.buy-btn:hover {
+  background: #0053cc;
+}
+
+/* Payment Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 10;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+}
+
+.close {
+  float: right;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.qr-img {
+  width: 220px;
+  margin: 15px 0;
+}
+
+.wallet-address {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.confirm-btn {
+  margin-top: 15px;
+  background: #00cc66;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+}
+
+.confirm-btn:hover {
+  background: #00aa55;
+}
+
+/* Loading Animation */
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.loader {
+  border: 5px solid #333;
+  border-top: 5px solid #00ccff;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
